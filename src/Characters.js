@@ -1,17 +1,32 @@
 import React from "react";
 import { Row, Col, Table } from "react-bootstrap";
 
-function Characters() {
+function Characters(props) {
+  const haha = props.people.map(person => {
+    return (
+      <tr>
+        <th>{person.name}</th>
+        <th>{person.birth_year}</th>
+        <th>{person.height}</th>
+        <th>{person.mass}</th>
+        <th>{person.homeworld}</th>
+        <th>{person.species}</th>
+      </tr>
+    );
+  });
   return (
     <Table striped bordered>
-      <tr>
-        <th>Name</th>
-        <th>Birth Date</th>
-        <th>Height</th>
-        <th>Mass</th>
-        <th>Homeworld</th>
-        <th>Species</th>
-      </tr>
+      <tbody>
+        <tr>
+          <th>Name</th>
+          <th>Birth Date</th>
+          <th>Height</th>
+          <th>Mass</th>
+          <th>Homeworld</th>
+          <th>Species</th>
+        </tr>
+        {haha}
+      </tbody>
     </Table>
   );
 }

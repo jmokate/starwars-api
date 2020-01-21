@@ -5,15 +5,10 @@ import Characters from "./Characters";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 class App extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
-      name: "",
-      birthday: "",
-      height: "",
-      mass: "",
-      homeworld: "",
-      species: ""
+      characters: []
     };
   }
 
@@ -21,8 +16,9 @@ class App extends React.Component {
     axios
       .get("https://swapi.co/api/people")
       .then(response => {
-        console.log(response.data);
-        this.setState({});
+        console.log(response.data.results);
+        this.setState({ characters: response.data.results });
+        console.log(this.state.characters);
       })
       .catch(error => {
         console.log(error);
@@ -42,7 +38,7 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <Characters />
+        <Characters people={this.state.characters} />
       </div>
     ); //<img src={this.state.img} alt='dog' />;
   }
