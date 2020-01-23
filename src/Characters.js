@@ -14,6 +14,11 @@ function Characters(props) {
       </tr>
     );
   });
+
+  // const homeworld = props.people.forEach(homeworld => {
+  //     return homeworld[i].homeworld
+  // })
+
   return (
     <Table striped bordered>
       <tbody>

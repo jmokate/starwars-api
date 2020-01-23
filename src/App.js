@@ -16,9 +16,11 @@ class App extends React.Component {
     axios
       .get("https://swapi.co/api/people")
       .then(response => {
-        console.log(response.data.results);
-        this.setState({ characters: response.data.results });
-        console.log(this.state.characters);
+        console.log(response.data.results[1].species);
+        this.setState({
+          characters: response.data.results
+        });
+        console.log(this.state.species);
       })
       .catch(error => {
         console.log(error);
