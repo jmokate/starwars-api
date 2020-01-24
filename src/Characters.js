@@ -15,9 +15,10 @@ function Characters(props) {
     );
   });
 
-  // const homeworld = props.people.forEach(homeworld => {
-  //     return homeworld[i].homeworld
-  // })
+  // const homeworld = props.people.forEach(homeworld, index => {
+  //   // return <tr><th>{homeworld[index].species}</th></tr>
+  //   console.log(homeworld, index);
+  // });
 
   return (
     <Table striped bordered>

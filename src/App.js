@@ -8,19 +8,23 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      characters: []
+      characters: [],
+      species: []
     };
   }
 
   componentDidMount() {
+    const peopleAPI = "https://swapi.co/api/people";
     axios
-      .get("https://swapi.co/api/people")
+      .get(peopleAPI)
       .then(response => {
         console.log(response.data.results[1].species);
+        axios.get(response.data.results.species).then(response => {
+          console.log(response.data);
+        });
         this.setState({
           characters: response.data.results
         });
-        console.log(this.state.species);
       })
       .catch(error => {
         console.log(error);
