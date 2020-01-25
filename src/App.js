@@ -9,7 +9,7 @@ class App extends React.Component {
     super(props);
     this.state = {
       characters: [],
-      species: []
+      species: {}
     };
   }
 
@@ -18,13 +18,20 @@ class App extends React.Component {
     axios
       .get(peopleAPI)
       .then(response => {
-        console.log(response.data.results[1].species);
-        axios.get(response.data.results.species).then(response => {
-          console.log(response.data);
-        });
+        console.log(response.data);
+
         this.setState({
           characters: response.data.results
         });
+
+        for (let element of this.state.characters) {
+          axios.get(element.species).then(species => {
+            // this.setState({
+            //   characters: { ...this.state.characters }
+            // });
+            console.log(species.data);
+          });
+        }
       })
       .catch(error => {
         console.log(error);
@@ -44,7 +51,10 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <Characters people={this.state.characters} />
+        <Characters
+          people={this.state.characters}
+          species={this.state.species}
+        />
       </div>
     ); //<img src={this.state.img} alt='dog' />;
   }

@@ -15,6 +15,17 @@ function Characters(props) {
     );
   });
 
+  // const species = [props.species];
+  // console.log(species);
+
+  // props.species.map(species => {
+  //   return (
+  //     <Row>
+  //       <th>{species.name}</th>
+  //     </Row>
+  //   );
+  // });
+
   // const homeworld = props.people.forEach(homeworld, index => {
   //   // return <tr><th>{homeworld[index].species}</th></tr>
   //   console.log(homeworld, index);
@@ -31,6 +42,7 @@ function Characters(props) {
           <th>Homeworld</th>
           <th>Species</th>
         </tr>
+
         {haha}
       </tbody>
     </Table>
