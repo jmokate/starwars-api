@@ -2,7 +2,10 @@ import React from "react";
 import { Row, Col, Table } from "react-bootstrap";
 
 function Characters(props) {
-  const haha = props.people.map(person => {
+  // const species = props.species.map(species => {
+  //   return <th>{species.name}</th>;
+  // });
+  const characters = props.people.map(person => {
     return (
       <tr>
         <th>{person.name}</th>
@@ -14,21 +17,8 @@ function Characters(props) {
       </tr>
     );
   });
-
-  // const species = [props.species];
-  // console.log(species);
-
-  // props.species.map(species => {
-  //   return (
-  //     <Row>
-  //       <th>{species.name}</th>
-  //     </Row>
-  //   );
-  // });
-
-  // const homeworld = props.people.forEach(homeworld, index => {
-  //   // return <tr><th>{homeworld[index].species}</th></tr>
-  //   console.log(homeworld, index);
+  // const species = props.species.map(species => {
+  //   return <th>{species.name}</th>;
   // });
 
   return (
@@ -43,7 +33,8 @@ function Characters(props) {
           <th>Species</th>
         </tr>
 
-        {haha}
+        {characters}
+        {/* {species} */}
       </tbody>
     </Table>
   );

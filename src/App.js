@@ -9,7 +9,7 @@ class App extends React.Component {
     super(props);
     this.state = {
       characters: [],
-      species: {}
+      species: []
     };
   }
 
@@ -18,18 +18,21 @@ class App extends React.Component {
     axios
       .get(peopleAPI)
       .then(response => {
-        console.log(response.data);
-
         this.setState({
           characters: response.data.results
         });
+        console.log(this.state.characters);
+
+        let speciesArray = [];
 
         for (let element of this.state.characters) {
           axios.get(element.species).then(species => {
-            // this.setState({
-            //   characters: { ...this.state.characters }
-            // });
-            console.log(species.data);
+            speciesArray.push(species.data);
+            this.setState({
+              species: speciesArray
+            });
+
+            console.log(this.state.species);
           });
         }
       })
