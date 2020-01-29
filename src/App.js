@@ -1,5 +1,4 @@
 import React from "react";
-//import ReactDOM from "react-dom";
 import axios from "axios";
 import Characters from "./Characters";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -15,24 +14,25 @@ class App extends React.Component {
 
   componentDidMount() {
     const peopleAPI = "https://swapi.co/api/people";
+
     axios
       .get(peopleAPI)
       .then(response => {
-        this.setState({
-          characters: response.data.results
-        });
-        console.log(this.state.characters);
+        let characterData = response.data.results;
+        console.log(characterData);
 
-        let speciesArray = [];
+        for (let element of characterData) {
+          axios.get(element.homeworld).then(homeworldData => {
+            element.homeworld = homeworldData.data.name;
+          });
+          axios.get(element.species).then(speciesData => {
+            element.species = speciesData.data.name;
 
-        for (let element of this.state.characters) {
-          axios.get(element.species).then(species => {
-            speciesArray.push(species.data);
+            console.log(speciesData.data.name);
+
             this.setState({
-              species: speciesArray
+              characters: characterData
             });
-
-            console.log(this.state.species);
           });
         }
       })
