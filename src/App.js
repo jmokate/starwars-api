@@ -7,13 +7,18 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      isLoading: false,
       characters: [],
-      species: []
+      currentPage: 1,
+      postsPerPage: 10
     };
   }
 
   componentDidMount() {
     const peopleAPI = "https://swapi.co/api/people";
+    this.setState({
+      isLoading: true
+    });
 
     axios
       .get(peopleAPI)
@@ -31,7 +36,8 @@ class App extends React.Component {
             console.log(speciesData.data.name);
 
             this.setState({
-              characters: characterData
+              characters: characterData,
+              isLoading: false
             });
           });
         }
@@ -40,6 +46,8 @@ class App extends React.Component {
         console.log(error);
       });
   }
+
+  componentDidUpdate() {}
 
   // axios
   //   .get("https://dog.ceo/api/breeds/image/random")
@@ -52,12 +60,26 @@ class App extends React.Component {
   //   });
 
   render() {
+    const isLoading = this.state.isLoading;
+    if (isLoading) {
+      return <h2>Loading...</h2>;
+    }
+
+    //get current posts
+    const indexOfLastPost = this.state.currentPage * this.state.postsPerPage;
+    console.log(indexOfLastPost);
+    const indexOfFirstPost = indexOfLastPost - this.state.postsPerPage;
+    console.log(indexOfFirstPost);
+    const currentPosts = this.state.characters.slice(
+      indexOfFirstPost,
+      indexOfLastPost
+    );
+    console.log(currentPosts);
+
     return (
       <div>
-        <Characters
-          people={this.state.characters}
-          species={this.state.species}
-        />
+        {isLoading}
+        <Characters people={currentPosts} species={this.state.species} />
       </div>
     ); //<img src={this.state.img} alt='dog' />;
   }
