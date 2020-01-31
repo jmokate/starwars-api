@@ -1,6 +1,7 @@
 import React from "react";
 import axios from "axios";
 import Characters from "./Characters";
+import Pagination from "./Pagination";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 class App extends React.Component {
@@ -10,7 +11,8 @@ class App extends React.Component {
       isLoading: false,
       characters: [],
       currentPage: 1,
-      postsPerPage: 10
+      postsPerPage: 10,
+      totalCharacters: 87
     };
   }
 
@@ -47,17 +49,9 @@ class App extends React.Component {
       });
   }
 
-  componentDidUpdate() {}
-
-  // axios
-  //   .get("https://dog.ceo/api/breeds/image/random")
-  //   .then(response => {
-  //     console.log(response.data);
-  //     this.setState({ img: response.data.message });
-  //   })
-  //   .catch(error => {
-  //     console.log(error);
-  //   });
+  componentDidUpdate(page) {
+    //new api call based on clicked link?
+  }
 
   render() {
     const isLoading = this.state.isLoading;
@@ -76,12 +70,20 @@ class App extends React.Component {
     );
     console.log(currentPosts);
 
+    //change page
+    const paginate = pageNumber => this.setState({ currentPage: pageNumber });
+
     return (
       <div>
         {isLoading}
         <Characters people={currentPosts} species={this.state.species} />
+        <Pagination
+          postsPerPage={this.state.postsPerPage}
+          totalCharacters={this.state.totalCharacters}
+          paginate={paginate}
+        />
       </div>
-    ); //<img src={this.state.img} alt='dog' />;
+    );
   }
 }
 
