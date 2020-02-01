@@ -17,7 +17,11 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    const peopleAPI = "https://swapi.co/api/people";
+    this.getCharacterData(this.state.currentPage);
+  }
+
+  getCharacterData = page => {
+    const peopleAPI = `https://swapi.co/api/people/?page=${page}`;
     this.setState({
       isLoading: true
     });
@@ -47,10 +51,24 @@ class App extends React.Component {
       .catch(error => {
         console.log(error);
       });
-  }
+  };
 
-  componentDidUpdate(page) {
+  componentDidUpdate(prevProps, prevState) {
+    console.log(this.state.characters);
+    // const updatedCharacters = this.state.characters;
+    // if (prevState.characters !== this.state.characters) {
+    //   this.setState({
+    //     characters: updatedCharacters
+    //   });
+    // }
     //new api call based on clicked link?
+    // try to use url + page? like -
+    //https://characters/$page=' + {page} ?
+    // const updatePage = "https://swapi.co/api/people/?page=" + {page}
+    // const
+    // this.setState({
+
+    console.log("something changed");
   }
 
   render() {
@@ -60,23 +78,29 @@ class App extends React.Component {
     }
 
     //get current posts
-    const indexOfLastPost = this.state.currentPage * this.state.postsPerPage;
-    console.log(indexOfLastPost);
-    const indexOfFirstPost = indexOfLastPost - this.state.postsPerPage;
-    console.log(indexOfFirstPost);
-    const currentPosts = this.state.characters.slice(
-      indexOfFirstPost,
-      indexOfLastPost
-    );
-    console.log(currentPosts);
+    // const indexOfLastPost = this.state.currentPage * this.state.postsPerPage;
+    // console.log(indexOfLastPost);
+    // const indexOfFirstPost = indexOfLastPost - this.state.postsPerPage;
+    // console.log(indexOfFirstPost);
+    // const currentPosts = this.state.characters.slice(
+    //   indexOfFirstPost,
+    //   indexOfLastPost
+    // );
+    // console.log(currentPosts);
 
     //change page
-    const paginate = pageNumber => this.setState({ currentPage: pageNumber });
+    const paginate = pageNumber => {
+      this.setState({ currentPage: pageNumber });
+      this.getCharacterData(pageNumber);
+    };
 
     return (
       <div>
         {isLoading}
-        <Characters people={currentPosts} species={this.state.species} />
+        <Characters
+          people={this.state.characters}
+          species={this.state.species}
+        />
         <Pagination
           postsPerPage={this.state.postsPerPage}
           totalCharacters={this.state.totalCharacters}

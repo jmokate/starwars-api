@@ -25,12 +25,12 @@ function Characters(props) {
     <Table striped bordered>
       <tbody>
         <tr>
-          <th>Name</th>
-          <th>Birth Date</th>
-          <th>Height</th>
-          <th>Mass</th>
-          <th>Homeworld</th>
-          <th>Species</th>
+          <th>NAME</th>
+          <th>BIRTH DATE</th>
+          <th>HEIGHT</th>
+          <th>MASS</th>
+          <th>HOMEWORLD</th>
+          <th>SPECIES</th>
         </tr>
 
         {characters}
