@@ -1,10 +1,7 @@
 import React from "react";
-import { Row, Col, Table } from "react-bootstrap";
+import { Table } from "react-bootstrap";
 
 function Characters(props) {
-  // const species = props.species.map(species => {
-  //   return <th>{species.name}</th>;
-  // });
   const characters = props.people.map(person => {
     return (
       <tr>
@@ -17,9 +14,6 @@ function Characters(props) {
       </tr>
     );
   });
-  // const species = props.species.map(species => {
-  //   return <th>{species.name}</th>;
-  // });
 
   return (
     <Table striped bordered>
@@ -34,7 +28,6 @@ function Characters(props) {
         </tr>
 
         {characters}
-        {/* {species} */}
       </tbody>
     </Table>
   );

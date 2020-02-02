@@ -5,7 +5,7 @@ function Pagination(props) {
 
   for (
     let i = 1;
-    i <= Math.ceil(props.totalCharacters / props.postsPerPage);
+    i <= Math.ceil(props.totalCharacters / props.charactersPerPage);
     i++
   ) {
     pageNumbers.push(i);
