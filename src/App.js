@@ -1,7 +1,7 @@
 import React from "react";
 import axios from "axios";
-import Characters from "./Characters";
-import Pagination from "./Pagination";
+import Characters from "./Components/Characters";
+import Pagination from "./Components/Pagination";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 class App extends React.Component {
