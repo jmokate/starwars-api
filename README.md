@@ -4,7 +4,7 @@ Expense Tracker using React
 
 View it on [Heroku](https://mokate-starwars-api.herokuapp.com/)
 
-![img of project](https://github.com/jmokate/expense-tracker-app/blob/master/expensetrackerimg.PNG)
+![img of project](https://github.com/jmokate/starwars-api/blob/master/starwarsapi.PNG)
 
 ## Summary
 
