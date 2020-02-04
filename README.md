@@ -8,7 +8,7 @@ View it on [Heroku](https://mokate-starwars-api.herokuapp.com/)
 
 ## Summary
 
-This React application is an exercise with using API calls via Axios. The purpose of this project is to continue learning the React library, work with external APIs, refine Vanilla Javascript skills and work more with Bootstrap. This project provided good practice in working with REST API's and how to display the data in my application. This project was my first experience in working with a REST API and I really enjoyed it. My next project will deal more with React and REST APIs.
+This React application is an exercise with using API calls via Axios. The purpose of this project is to continue learning the React library, work with external APIs, incorporate pagination of data without packages, refine Vanilla Javascript skills and work more with Bootstrap. This project provided good practice in working with REST API's and how to display the data in my application. This project was my first experience in working with a REST API and I really enjoyed it. My next project will deal more with React and REST APIs.
 
 ## Author
 
