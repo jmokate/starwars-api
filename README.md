@@ -1,3 +1,19 @@
+# Star Wars API Application (React)
+
+Expense Tracker using React
+
+View it on [Heroku](https://mokate-starwars-api.herokuapp.com/)
+
+![img of project](https://github.com/jmokate/expense-tracker-app/blob/master/expensetrackerimg.PNG)
+
+## Summary
+
+This React application is an exercise with using API calls via Axios. The purpose of this project is to continue learning the React library, work with external APIs, refine Vanilla Javascript skills and work more with Bootstrap. This project provided good practice in working with REST API's and how to display the data in my application. This project was my first experience in working with a REST API and I really enjoyed it. My next project will deal more with React and REST APIs.
+
+## Author
+
+- **John Mokate** - Programmer [Website](https://mokate.tumblr.com) **|** [LinkedIn](https://www.linkedin.com/in/mokate/)
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
