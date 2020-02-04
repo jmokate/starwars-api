@@ -1,6 +1,6 @@
 # Star Wars API Application (React)
 
-Expense Tracker using React
+Star Wars API Application using React
 
 View it on [Heroku](https://mokate-starwars-api.herokuapp.com/)
 
