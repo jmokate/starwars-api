@@ -10,6 +10,10 @@ class App extends React.Component {
     this.state = {
       isLoading: false,
       characters: [],
+      homeworlds: [
+        //url: "homeworld/1", name: "alderaan}"
+      ],
+      species: [],
       currentPage: 1,
       charactersPerPage: 10,
       totalCharacters: 0
@@ -22,36 +26,90 @@ class App extends React.Component {
     this.getCharacterData(this.state.currentPage);
   }
 
-  getCharacterData(page) {
+  async getCharacterData(page) {
     const characterAPI = `https://swapi.co/api/people/?page=${page}`;
     this.setState({
       isLoading: true
     });
 
-    axios
-      .get(characterAPI)
-      .then(response => {
-        let characterData = response.data.results;
-        let totalCharacters = response.data.count;
+    const response = await axios.get(characterAPI);
 
-        for (let element of characterData) {
-          axios.get(element.homeworld).then(homeworldData => {
-            element.homeworld = homeworldData.data.name;
-          });
-          axios.get(element.species).then(speciesData => {
-            element.species = speciesData.data.name;
+    const characterData = response.data.results;
+    const totalCharacters = response.data.count;
+    const cachedHomeWorlds = this.state.homeworlds.map(homeworld =>
+      Object.assign({}, homeworld)
+    );
+    console.log(cachedHomeWorlds);
+    const cachedSpecies = this.state.species.map(species =>
+      Object.assign({}, species)
+    );
 
-            this.setState({
-              characters: characterData,
-              isLoading: false,
-              totalCharacters: totalCharacters
-            });
-          });
-        }
-      })
-      .catch(error => {
-        console.log(error);
-      });
+    //figure out how many http reuqests are made
+    let homeworldHTTPRequests = 0;
+    let speciesHTTPRequests = 0;
+
+    // axios
+    //   .get(characterAPI)
+    //   .then(response => {
+    //     let characterData = response.data.results;
+    //     let totalCharacters = response.data.count;
+
+    for (let element of characterData) {
+      //check saved homeworlds
+      const matchingHomeWorld = cachedHomeWorlds.filter(
+        savedHomeWorld => savedHomeWorld.url === element.homeworld
+      );
+      if (matchingHomeWorld.length > 0) {
+        element.homeworld = matchingHomeWorld[0].name;
+      } else {
+        const homeWorldResponse = await axios.get(element.homeworld);
+        homeworldHTTPRequests++;
+
+        cachedHomeWorlds.push({
+          url: element.homeworld,
+          name: homeWorldResponse.data.name
+        });
+        element.homeworld = homeWorldResponse.data.name;
+      }
+      const matchingSpecies = cachedSpecies.filter(
+        savedSpecies => savedSpecies.url === element.species[0]
+      );
+      if (matchingSpecies.length > 0) {
+        element.species = matchingSpecies[0].name;
+      } else {
+        const speciesResponse = await axios.get(element.species[0]);
+        speciesHTTPRequests++;
+        cachedSpecies.push({
+          url: element.species[0],
+          name: speciesResponse.data.name
+        });
+        element.species = speciesResponse.data.name;
+      }
+
+      //if homeworld exists, set it from saved homeworlds in state
+      //else get homeworld from api
+
+      // axios.get(element.homeworld).then(homeworldData => {
+      //   element.homeworld = homeworldData.data.name;
+      // });
+      // const speciesResponse = await axios.get(element.species);
+      // element.species = speciesResponse.data.name;
+    }
+    //check how many requests made for homeworlds and species
+    console.log(homeworldHTTPRequests);
+    console.log(speciesHTTPRequests);
+
+    // axios.get(element.species).then(speciesData => {
+    //   element.species = speciesData.data.name;
+
+    this.setState({
+      characters: characterData,
+      isLoading: false,
+      totalCharacters: totalCharacters,
+      homeworlds: cachedHomeWorlds,
+      species: cachedSpecies
+    });
+    console.log(cachedHomeWorlds);
   }
 
   paginate(pageNumber) {
