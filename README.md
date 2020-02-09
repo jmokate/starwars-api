@@ -12,10 +12,10 @@ This React application is an exercise with using API calls via Axios. The purpos
 
 ## Installation Insructions
 
-1. Download Repository
-2. Using the command line, navigate to root directory and run "npm i"
-3. Run 'npm start'
-4. In your browser, redirect to localhost where the 'client' is running. (Typically http://localhost:3000/)
+1. Download Repository.
+2. Using the command line, navigate to root directory and run "npm i".
+3. Run "npm start".
+4. In your browser, redirect to localhost where the application is running. (Typically http://localhost:3000/).
 5. Enjoy them tasty Star Wars character stats!
 
 ## Author
