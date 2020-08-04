@@ -25,7 +25,7 @@ class App extends React.Component {
 	}
 
 	async getCharacterData(page) {
-		const characterAPI = `https://swapi.dev/api/people?page=${page}`;
+		const characterAPI = `https://swapi.dev/api/people/?page=${page}/`;
 		this.setState({
 			isLoading: true,
 		});
@@ -49,7 +49,9 @@ class App extends React.Component {
 			if (matchingHomeWorld.length > 0) {
 				element.homeworld = matchingHomeWorld[0].name;
 			} else {
-				const homeWorldResponse = await axios.get(element.homeworld);
+				const homeWorldResponse = await axios.get(
+					element.homeworld.replace("http", "https")
+				);
 
 				cachedHomeWorlds.push({
 					url: element.homeworld,
