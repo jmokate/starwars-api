@@ -21,11 +21,11 @@ class App extends React.Component {
 	}
 
 	componentDidMount() {
-		this.getCharacterData(this.state.currentPage);
+		this.getCharacterData(1);
 	}
 
 	async getCharacterData(page) {
-		const characterAPI = `https://swapi.dev/api/people/?page=${page}`;
+		const characterAPI = `https://swapi.dev/api/people/${page}/`;
 		this.setState({
 			isLoading: true,
 		});
@@ -63,7 +63,7 @@ class App extends React.Component {
 			if (matchingSpecies.length > 0) {
 				element.species = matchingSpecies[0].name;
 			} else {
-				const speciesResponse = await axios.get(element.species);
+				const speciesResponse = await axios.get(element.species[0]);
 
 				cachedSpecies.push({
 					url: element.species[0],

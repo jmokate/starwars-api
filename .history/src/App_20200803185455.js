@@ -103,7 +103,7 @@ class App extends React.Component {
 				<Pagination
 					charactersPerPage={this.state.charactersPerPage}
 					totalCharacters={this.state.totalCharacters}
-					paginate={this.paginate}
+					paginate={this.paginate()}
 				/>
 			</div>
 		);

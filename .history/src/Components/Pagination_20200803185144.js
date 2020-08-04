@@ -2,6 +2,7 @@ import React from "react";
 
 function Pagination(props) {
 	const pageNumbers = [];
+	let number;
 
 	for (
 		let i = 1;
@@ -9,6 +10,7 @@ function Pagination(props) {
 		i++
 	) {
 		pageNumbers.push(i);
+		number = pageNumbers[i];
 	}
 
 	return (
@@ -19,6 +21,7 @@ function Pagination(props) {
 						<a
 							onClick={() => props.paginate(number)}
 							onChange={() => props.getCharacterData(number)}
+							href='!#'
 							className='page-link'
 						>
 							{number}

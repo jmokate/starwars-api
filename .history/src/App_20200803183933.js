@@ -30,7 +30,9 @@ class App extends React.Component {
 			isLoading: true,
 		});
 
-		const response = await axios.get(characterAPI);
+		const response = await axios.request({method: "get",
+																					url: characterAPI,
+																					crossDomain: true);
 		console.log(response);
 		const characterData = response.data.results;
 		const totalCharacters = response.data.count;
@@ -63,7 +65,7 @@ class App extends React.Component {
 			if (matchingSpecies.length > 0) {
 				element.species = matchingSpecies[0].name;
 			} else {
-				const speciesResponse = await axios.get(element.species);
+				const speciesResponse = await axios.get(element.species[0]);
 
 				cachedSpecies.push({
 					url: element.species[0],

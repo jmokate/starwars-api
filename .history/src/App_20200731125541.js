@@ -25,13 +25,13 @@ class App extends React.Component {
 	}
 
 	async getCharacterData(page) {
-		const characterAPI = `https://swapi.dev/api/people/?page=${page}`;
+		const characterAPI = `http https://swapi.dev/api/people/?page=${page}`;
 		this.setState({
 			isLoading: true,
 		});
 
 		const response = await axios.get(characterAPI);
-		console.log(response);
+
 		const characterData = response.data.results;
 		const totalCharacters = response.data.count;
 		const cachedHomeWorlds = this.state.homeworlds.map(homeworld =>
@@ -63,7 +63,7 @@ class App extends React.Component {
 			if (matchingSpecies.length > 0) {
 				element.species = matchingSpecies[0].name;
 			} else {
-				const speciesResponse = await axios.get(element.species);
+				const speciesResponse = await axios.get(element.species[0]);
 
 				cachedSpecies.push({
 					url: element.species[0],
