@@ -49,9 +49,7 @@ class App extends React.Component {
 			if (matchingHomeWorld.length > 0) {
 				element.homeworld = matchingHomeWorld[0].name;
 			} else {
-				const homeWorldResponse = await axios.get(
-					element.homeworld.replace("http", "https")
-				);
+				const homeWorldResponse = await axios.get(element.homeworld);
 
 				cachedHomeWorlds.push({
 					url: element.homeworld,

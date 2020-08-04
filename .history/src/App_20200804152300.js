@@ -65,7 +65,7 @@ class App extends React.Component {
 			if (matchingSpecies.length > 0) {
 				element.species = matchingSpecies[0].name;
 			} else {
-				const speciesResponse = await axios.get(element.species);
+				const speciesResponse = await axios.get(element.species.replace);
 
 				cachedSpecies.push({
 					url: element.species[0],
