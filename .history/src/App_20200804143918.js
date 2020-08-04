@@ -25,7 +25,7 @@ class App extends React.Component {
 	}
 
 	async getCharacterData(page) {
-		const characterAPI = `http://swapi.dev/api/people/?page=${page}`;
+		const characterAPI = `https://swapi.dev/api/people/?page=${page}`;
 		this.setState({
 			isLoading: true,
 		});

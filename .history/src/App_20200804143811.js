@@ -25,12 +25,12 @@ class App extends React.Component {
 	}
 
 	async getCharacterData(page) {
-		const characterAPI = `http://swapi.dev/api/people/?page=${page}`;
+		const characterAPI = `https://swapi.dev/api/people/?page=${page}`;
 		this.setState({
 			isLoading: true,
 		});
 
-		const response = await axios.get(characterAPI);
+		const response = await axios.get(characterAPI.replace("http", "https"));
 		console.log(response);
 		const characterData = response.data.results;
 		const totalCharacters = response.data.count;
