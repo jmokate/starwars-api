@@ -20,8 +20,8 @@ function Pagination(props) {
 						<a
 							onClick={() => props.paginate(number)}
 							onChange={() => props.getCharacterData(number)}
+							href={props.currentPage}
 							className='page-link'
-							href='#/'
 							style={{ color: "#61dafb" }}
 						>
 							{number}

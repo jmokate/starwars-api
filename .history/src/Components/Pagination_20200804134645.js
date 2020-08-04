@@ -1,6 +1,5 @@
 import React from "react";
-import "bootstrap/dist/css/bootstrap.min.css";
-
+import "../App.css";
 function Pagination(props) {
 	const pageNumbers = [];
 
@@ -21,7 +20,6 @@ function Pagination(props) {
 							onClick={() => props.paginate(number)}
 							onChange={() => props.getCharacterData(number)}
 							className='page-link'
-							href='#/'
 							style={{ color: "#61dafb" }}
 						>
 							{number}

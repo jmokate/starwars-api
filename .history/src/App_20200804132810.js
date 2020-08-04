@@ -2,7 +2,6 @@ import React from "react";
 import axios from "axios";
 import Characters from "./Components/Characters";
 import Pagination from "./Components/Pagination";
-import "bootstrap/dist/css/bootstrap.min.css";
 
 class App extends React.Component {
 	constructor(props) {
@@ -25,7 +24,7 @@ class App extends React.Component {
 	}
 
 	async getCharacterData(page) {
-		const characterAPI = `https://swapi.dev/api/people/?page=${page}`;
+		const characterAPI = `swapi.dev/api/people/?page=${page}`;
 		this.setState({
 			isLoading: true,
 		});
@@ -103,7 +102,6 @@ class App extends React.Component {
 				<Pagination
 					charactersPerPage={this.state.charactersPerPage}
 					totalCharacters={this.state.totalCharacters}
-					currentPage={this.state.currentPage}
 					paginate={this.paginate}
 				/>
 			</div>

@@ -2,7 +2,6 @@ import React from "react";
 import axios from "axios";
 import Characters from "./Components/Characters";
 import Pagination from "./Components/Pagination";
-import "bootstrap/dist/css/bootstrap.min.css";
 
 class App extends React.Component {
 	constructor(props) {
@@ -93,6 +92,8 @@ class App extends React.Component {
 			return <h2>Loading...</h2>;
 		}
 
+		let characterKey;
+
 		return (
 			<div>
 				{isLoading}
@@ -103,7 +104,6 @@ class App extends React.Component {
 				<Pagination
 					charactersPerPage={this.state.charactersPerPage}
 					totalCharacters={this.state.totalCharacters}
-					currentPage={this.state.currentPage}
 					paginate={this.paginate}
 				/>
 			</div>

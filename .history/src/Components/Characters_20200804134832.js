@@ -5,8 +5,8 @@ import "../App.css";
 function Characters(props) {
 	const characters = props.people.map(person => {
 		return (
-			<tr key={person.name}>
-				<th>{person.name}</th>
+			<tr>
+				<td>{person.name}</td>
 				<th>{person.birth_year}</th>
 				<th>{person.height}</th>
 				<th>{person.mass}</th>
