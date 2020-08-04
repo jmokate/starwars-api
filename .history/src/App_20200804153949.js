@@ -25,7 +25,7 @@ class App extends React.Component {
 	}
 
 	async getCharacterData(page) {
-		const characterAPI = `https://swapi.dev/api/people/?page=${page}`;
+		const characterAPI = `https://swapi.dev/api/people?page=${page}`;
 		this.setState({
 			isLoading: true,
 		});
@@ -47,9 +47,9 @@ class App extends React.Component {
 				savedHomeWorld => savedHomeWorld.url === element.homeworld
 			);
 			if (matchingHomeWorld.length > 0) {
-				element.homeworld = matchingHomeWorld[0].name;
+				element.homeworld == matchingHomeWorld[0].name;
 			} else {
-				const homeWorldResponse = await axios.get(element.homeworld).replace();
+				const homeWorldResponse = await axios.get(element.homeworld);
 
 				cachedHomeWorlds.push({
 					url: element.homeworld,
@@ -61,7 +61,7 @@ class App extends React.Component {
 				savedSpecies => savedSpecies.url === element.species[0]
 			);
 			if (matchingSpecies.length > 0) {
-				element.species = matchingSpecies[0].name;
+				element.species == matchingSpecies[0].name;
 			} else {
 				const speciesResponse = await axios.get(element.species);
 
