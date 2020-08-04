@@ -30,7 +30,7 @@ class App extends React.Component {
 			isLoading: true,
 		});
 
-		const response = await axios.get(characterAPI);
+		const response = await axios.get(characterAPI.replace("http", "https"));
 		console.log(response);
 		const characterData = response.data.results;
 		const totalCharacters = response.data.count;
